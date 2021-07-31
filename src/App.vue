@@ -1,45 +1,40 @@
 <template>
   <div class="flex flex-col h-full">
-    <div class="flex-initial">
-      <div class="flex flex-row bg-gray-600">
-        <div class=" text-white pl-3 py-2 text-lg font-medium">
-          Tauri
-        </div>
+    <div class="flex-initial flex flex-row pl-2 bg-gray-200">
+      <div>
+        Tauri
       </div>
     </div>
-    <div class="flex-1 flex flex-row">
-      <div class="flex-initial px-3 py-3 bg-gray-400 flex flex-col gap-2">
-        <button class="tab-item tab-item-active">Home</button>
-        <button class="tab-item tab-item-inactive">Test</button>
-        <button class="tab-item tab-item-inactive">About</button>
-      </div>
-      <div class="flex-1 bg-gray-300 px-2 py-1">
-        Content
-      </div>
+    <div class="flex-1 flex flex-col bg-trueGray-700 place-items-center  px-1 py-1">
+      <CountdownComponent class="flex-1" />
     </div>
-    
+    <div class="flex-initial flex flex-row bg-trueGray-500 py-0 justify-evenly">
+      <button class="btn"><img class="image-btn" src="@/assets/clock.svg" /></button>
+      <button class="btn"><img class="image-btn" src="@/assets/coffee.svg" /></button>
+      <button class="btn"><img class="image-btn" src="@/assets/playpause.svg"></button>
+    </div>
   </div>
 </template>
 
 <style>
-.tab-item-active {
-  @apply bg-blue-700 text-white
+.btn {
+  @apply flex flex-col place-items-center px-1 py-1 hover:bg-trueGray-600 active:bg-trueGray-700 w-8 h-8;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
-.tab-item {
-  @apply rounded-sm px-2 py-1 w-24 text-left
+.image-btn {
+  @apply flex-1;
 }
-.tab-item-inactive {
-  @apply hover:bg-gray-300
-}
-
 </style>
 
 <script lang="ts">
+import CountdownComponent from '@/components/Countdown.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'App',
   components: {
+    CountdownComponent
   }
 })
 
