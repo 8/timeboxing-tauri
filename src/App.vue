@@ -2,7 +2,7 @@
   <div class="flex flex-col h-full">
     <div class="flex-initial flex flex-row pl-2 bg-gray-200">
       <div>
-        Tauri
+        {{ state.CompletedWorkTimeboxes }}
       </div>
     </div>
     <div class="flex-1 flex flex-col bg-trueGray-700 place-items-center  px-1 py-1">
@@ -29,9 +29,9 @@
 
 <script lang="ts">
 import CountdownComponent from '@/components/Countdown.vue'
-import { computed, defineComponent, watch } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import { getDefaultBreakDuration, getDefaultWorkDuration, state } from './state'
-import { TimerCancellation, startTimer } from './timer'
+import { start, cancel } from './timer'
 import * as moment from 'moment'
 
 export default defineComponent({
@@ -41,30 +41,15 @@ export default defineComponent({
   },
   setup() {
 
-    let cancellation : TimerCancellation | null = null
-
-    const cancel = () => {
-      if (cancellation) {
-        cancellation()
-        cancellation = null
-        return true
-      }
-      return false
-    }
-
-    const start = () => {
-      if (!cancellation) {
-        cancellation = startTimer(state)
-      }
-    }
-
     const clickClock = () => {
       state.Countdown = getDefaultWorkDuration()
+      state.Type = 'Work'
       start()
     }
 
     const clickCoffee = () => {
       state.Countdown = getDefaultBreakDuration()
+      state.Type = 'Break'
       start()
     }
 
@@ -74,12 +59,6 @@ export default defineComponent({
       }
     }
 
-    watch(state.Countdown, countdown => {
-      if (countdown.asSeconds() === 0) {
-        cancel()
-      }
-    })
-
     const countdown = computed(() => moment.utc(state.Countdown.asMilliseconds()).format('mm:ss'))
 
     return {
@@ -87,6 +66,7 @@ export default defineComponent({
       clickCoffee,
       clickPlayPause,
       countdown,
+      state,
     }
 
   }
