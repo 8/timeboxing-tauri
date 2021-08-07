@@ -20,7 +20,7 @@
 
 <style lang="postcss" scoped>
 .char {
-  @apply  text-center;
+  @apply text-center w-8;
 }
 .text {
   font-family: 'Bahnschrift';
