@@ -3,12 +3,12 @@
     <div class="flex-initial flex flex-row bg-gray-200">
       <CompletedTimeboxes class="flex-1" :completedTimeboxes="state.CompletedWorkTimeboxes" />
     </div>
-    <div class="flex-1 flex flex-col bg-trueGray-700 place-items-center  px-1 py-1">
+    <div class="flex-1 flex flex-col bg-trueGray-700 place-items-center px-1 py-1">
       <CountdownComponent class="flex-1" :countdown="countdown" />
     </div>
-    <div class="flex-initial flex flex-row bg-trueGray-500 py-0 justify-evenly">
-      <button class="btn" v-on:click="clickClock"><img class="image-btn" src="@/assets/clock.svg" /></button>
-      <button class="btn" v-on:click="clickCoffee"><img class="image-btn" src="@/assets/coffee.svg" /></button>
+    <div class="flex-initial flex flex-row bg-trueGray-500 justify-evenly">
+      <button class="btn" v-on:click="clickClock"><img class="image-btn" src="@/assets/clock.svg" ></button>
+      <button class="btn" v-on:click="clickCoffee"><img class="image-btn" src="@/assets/coffee.svg" ></button>
       <button class="btn" v-on:click="clickPlayPause"><img class="image-btn" src="@/assets/playpause.svg"></button>
     </div>
   </div>
