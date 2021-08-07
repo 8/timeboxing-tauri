@@ -13,7 +13,7 @@ const startTimer : ((state : State) => TimerCancellation) =
 
 let cancellation : TimerCancellation | null = null
 
-export const cancel = () => {
+export const cancel : () => boolean = () => {
   if (cancellation) {
     cancellation()
     cancellation = null
@@ -22,7 +22,7 @@ export const cancel = () => {
   return false
 }
 
-export const start = () => {
+export const start : () => void = () => {
   if (!cancellation) {
     cancellation = startTimer(state)
   }

@@ -1,24 +1,27 @@
 <template>
-  <div class="flex flex-row gap-1 text-6xl place-items-center text-white text">
-    <div>
+  <div class="flex flex-row text-6xl place-items-center text-white text" style="gap: 2px">
+    <div class="char">
       {{ countdown[0] }}
     </div>
-    <div>
+    <div class="char">
       {{ countdown[1] }}
     </div>
-    <div >
+    <div class="w-3">
       {{ countdown[2] }}
     </div>
-    <div>
+    <div class="char">
       {{ countdown[3] }}
     </div>
-    <div>
+    <div class="char">
       {{ countdown[4] }}
     </div>
   </div>
 </template>
 
 <style lang="postcss" scoped>
+.char {
+  @apply  text-center;
+}
 .text {
   font-family: 'Bahnschrift';
 }
@@ -26,7 +29,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-// import { Duration } from 'moment'
 
 export default defineComponent({
   props: {
@@ -35,8 +37,7 @@ export default defineComponent({
       default: '00:00'
     }
   },
-  setup() {
-    
-  },
+  // setup() {
+  // },
 })
 </script>
