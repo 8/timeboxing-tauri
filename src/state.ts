@@ -9,7 +9,7 @@ export type State = {
   CompletedWorkTimeboxes : number
 }
 
-const devMode = true
+const devMode = false
 
 export const getDefaultWorkDuration : () => Duration = () => devMode ? duration(5, 'seconds') : duration(25, 'minutes')
 export const getDefaultBreakDuration : () => Duration = () => devMode ? duration(3, 'seconds') : duration(5, 'minutes')
