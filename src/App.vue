@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col h-full">
     <div class="flex-initial flex flex-row bg-gray-200">
-      <CompletedTimeboxes class="flex-1" :completedTimeboxes="state.CompletedWorkTimeboxes" />
+      <TitlebarComponent class="flex-1" :completedTimeboxes="state.CompletedWorkTimeboxes" />
     </div>
     <div class="flex-1 flex flex-col bg-trueGray-700 place-items-center px-1 py-1">
       <CountdownComponent class="flex-1" :countdown="countdown" />
@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import CountdownComponent from '@/components/Countdown.vue'
-import CompletedTimeboxes from '@/components/CompletedTimeboxes.vue'
+import TitlebarComponent from '@/components/Titlebar.vue'
 import { computed, defineComponent } from 'vue'
 import { getDefaultBreakDuration, getDefaultWorkDuration, state } from './state'
 import { start, cancel } from './timer'
@@ -37,7 +37,7 @@ export default defineComponent({
   name: 'App',
   components: {
     CountdownComponent,
-    CompletedTimeboxes,
+    TitlebarComponent,
   },
   setup() {
 
