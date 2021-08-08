@@ -1,5 +1,6 @@
 import { State, state } from './state';
 import { watch } from 'vue'
+import { playWorkCompletedSound } from './audio';
 
 export type TimerCancellation = () => void
 
@@ -34,6 +35,7 @@ watch(state, s => {
     if (state.Type === 'Work') {
       state.Type = null
       state.CompletedWorkTimeboxes = state.CompletedWorkTimeboxes + 1
+      playWorkCompletedSound()
     }
   }
 })
