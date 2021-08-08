@@ -8,17 +8,6 @@
   </div>
 </template>
 
-<style lang="postcss" scoped>
-.btn {
-  @apply flex flex-col place-items-center px-1 py-1 hover:bg-trueGray-600 active:bg-trueGray-700 w-8 h-8;
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-.image-btn {
-  @apply flex-1;
-}
-</style>
-
 <script lang="ts">
 import CountdownComponent from '@/components/Countdown.vue'
 import TitlebarComponent from '@/components/Titlebar.vue'
