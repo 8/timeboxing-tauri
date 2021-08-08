@@ -7,7 +7,8 @@
         />
     </svg>
 
-    <button class="px-2 bg-gray-200 text-trueGray-700 font-light">
+    <button class="px-2 bg-gray-200 text-trueGray-700 font-light"
+      v-on:click="clickClose">
       X
     </button>
   </div>
@@ -15,6 +16,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
+import { appWindow  } from '@tauri-apps/api/window'
 
 export default defineComponent({
   props: {
@@ -33,8 +35,13 @@ export default defineComponent({
       return timeBoxes
     })
 
+    const clickClose = () => {
+      appWindow.close()
+    }
+
     return {
       timeBoxes,
+      clickClose,
     }
   },
 })
