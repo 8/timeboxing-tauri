@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col h-full">
-    <TitlebarComponent :completedTimeboxes="state.CompletedWorkTimeboxes" />
+    <TitlebarComponent :completedTimeboxes="state.CompletedWorkTimeboxes" v-on:removeTimebox="removeTimebox" />
     <div class="flex-1 flex flex-col bg-trueGray-700 place-items-center">
       <CountdownComponent class="flex-1" :countdown="countdown" />
     </div>
@@ -27,9 +27,16 @@ export default defineComponent({
 
     const countdown = computed(() => moment.utc(state.Countdown.asMilliseconds()).format('mm:ss'))
 
+    const removeTimebox = () => {
+      if (state.CompletedWorkTimeboxes > 0) {
+        state.CompletedWorkTimeboxes = state.CompletedWorkTimeboxes - 1
+      }
+    }
+
     return {
       countdown,
       state,
+      removeTimebox,
     }
 
   }

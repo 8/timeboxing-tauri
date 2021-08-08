@@ -1,9 +1,10 @@
 <template>
   <div class="flex flex-row bg-gray-200" data-tauri-drag-region>
     <svg data-tauri-drag-region class="pl-1" width="100%" height="23px" >
-      <rect data-tauri-drag-region v-for="i in timeBoxes" :key="i"
+      <rect v-for="i in timeBoxes" :key="i"
         class="fill-current text-trueGray-600"
-        width="16" height="16" rx="1" :x="22 * i" y="4"
+        width="14" height="14" rx="1" :x="18 * i" y="5"
+        v-on:contextmenu="rightClickRect"
         />
     </svg>
 
@@ -19,13 +20,16 @@ import { computed, defineComponent } from 'vue'
 import { appWindow  } from '@tauri-apps/api/window'
 
 export default defineComponent({
+  emits: [
+    'removeTimebox'
+  ],
   props: {
     completedTimeboxes: {
       required: true,
       type: Number,
     }
   },
-  setup(props) {
+  setup(props, ctx) {
 
     const timeBoxes = computed(() => {
       let timeBoxes : Array<number> = []
@@ -38,10 +42,18 @@ export default defineComponent({
     const clickClose = () => {
       appWindow.close()
     }
+    
+    const rightClickRect = (ev: MouseEvent) => {
+      ev.preventDefault()
+      if (ev?.button === 2) {
+        ctx.emit('removeTimebox')
+      }
+    }
 
     return {
       timeBoxes,
       clickClose,
+      rightClickRect,
     }
   },
 })
