@@ -23,7 +23,7 @@ export const cancel : () => boolean = () => {
 }
 
 export const start : () => void = () => {
-  if (!cancellation) {
+  if (!cancellation && state.Countdown.asSeconds() > 0) {
     cancellation = startTimer(state)
   }
 }
