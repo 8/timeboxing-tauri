@@ -1,16 +1,10 @@
 <template>
   <div class="flex flex-col h-full">
-    <div class="flex-initial flex flex-row bg-gray-200">
-      <TitlebarComponent class="flex-1" :completedTimeboxes="state.CompletedWorkTimeboxes" />
-    </div>
-    <div class="flex-1 flex flex-col bg-trueGray-700 place-items-center px-1 py-1">
+    <TitlebarComponent :completedTimeboxes="state.CompletedWorkTimeboxes" />
+    <div class="flex-1 flex flex-col bg-trueGray-700 place-items-center">
       <CountdownComponent class="flex-1" :countdown="countdown" />
     </div>
-    <div class="flex-initial flex flex-row bg-trueGray-500 justify-evenly">
-      <button class="btn" v-on:click="clickClock"><img class="image-btn" src="@/assets/clock.svg" ></button>
-      <button class="btn" v-on:click="clickCoffee"><img class="image-btn" src="@/assets/coffee.svg" ></button>
-      <button class="btn" v-on:click="clickPlayPause"><img class="image-btn" src="@/assets/playpause.svg"></button>
-    </div>
+    <ButtonsComponent />
   </div>
 </template>
 
@@ -28,43 +22,23 @@
 <script lang="ts">
 import CountdownComponent from '@/components/Countdown.vue'
 import TitlebarComponent from '@/components/Titlebar.vue'
+import ButtonsComponent from '@/components/Buttons.vue'
 import { computed, defineComponent } from 'vue'
-import { getDefaultBreakDuration, getDefaultWorkDuration, state } from './state'
-import { start, cancel } from './timer'
 import * as moment from 'moment'
+import { state } from './state'
 
 export default defineComponent({
   name: 'App',
   components: {
     CountdownComponent,
     TitlebarComponent,
+    ButtonsComponent,
   },
   setup() {
-
-    const clickClock = () => {
-      state.Countdown = getDefaultWorkDuration()
-      state.Type = 'Work'
-      start()
-    }
-
-    const clickCoffee = () => {
-      state.Countdown = getDefaultBreakDuration()
-      state.Type = 'Break'
-      start()
-    }
-
-    const clickPlayPause = () => {
-      if (!cancel()) {
-        start()
-      }
-    }
 
     const countdown = computed(() => moment.utc(state.Countdown.asMilliseconds()).format('mm:ss'))
 
     return {
-      clickClock,
-      clickCoffee,
-      clickPlayPause,
       countdown,
       state,
     }

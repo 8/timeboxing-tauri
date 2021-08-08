@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row" data-tauri-drag-region>
+  <div class="flex flex-row bg-gray-200" data-tauri-drag-region>
     <svg data-tauri-drag-region class="pl-1" width="100%" height="23px" >
       <rect data-tauri-drag-region v-for="i in timeBoxes" :key="i"
         class="fill-current text-trueGray-600"
